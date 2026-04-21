@@ -1,0 +1,118 @@
+Sound Voltex VI - Exceed Gear:
+  bg image: exceedgear.png
+  sound subfolder: sdvx-6
+  bgm: title_bgm_S2.ogg
+  start sound: start.ogg
+  launch scripts:
+    1:
+      name: Final Server
+      path: D:\full-path-to-batch-file
+    2:
+      name: Final Server2
+      path: D:\full-path-to-batch-file
+    3:
+      name: SDVX PLUS
+      path: D:\full-path-to-batch-file
+
+Sound Voltex コナステ - Exceed Gear:
+  bg image: exceedgear.png
+  sound subfolder: sdvx-6
+  bgm: title_bgm_S2.ogg
+  start sound: start.ogg
+  launch scripts:
+    1:
+      name: Konaste 1
+      path: D:\full-path-to-batch-file
+    2:
+      name: Konaste 2
+      path: D:\full-path-to-batch-file
+
+Sound Voltex V - Vivid Wave:
+  bg image: vividwave.png
+  sound subfolder: sdvx-5
+  bgm: voltexes_5.ogg
+  start sound: start.ogg
+  launch scripts:
+    1:
+      name: Default   
+      path: D:\full-path-to-batch-file
+
+Sound Voltex IV - Heavenly Haven:
+  bg image: heavenlyhaven.png
+  sound subfolder: sdvx-4
+  bgm: voltexes_4.ogg
+  start sound: start.ogg
+  launch scripts:
+    1:
+      name: Default   
+      path: D:\full-path-to-batch-file
+
+Sound Voltex III - Gravity Wars S2:
+  bg image: gravitywars-2.png
+  sound subfolder: sdvx-3-2
+  bgm: title_bgm.ogg
+  start sound: start.ogg
+  launch scripts:
+    1:
+      name: Default   
+      path: D:\full-path-to-batch-file
+
+Sound Voltex III - Gravity Wars S1:
+  bg image: gravitywars-1.png
+  sound subfolder: sdvx-3-1
+  bgm: voltexes_3.ogg
+  start sound: start.ogg
+  launch scripts:
+    1:
+      name: Default   
+      path: D:\full-path-to-batch-file
+
+Sound Voltex II - Infinite Infection:
+  bg image: infiniteinfection.png
+  sound subfolder: sdvx-2
+  bgm: voltexes_2.ogg
+  start sound: start.wav
+  launch scripts:
+    1:
+      name: Default   
+      path: D:\full-path-to-batch-file
+
+Sound Voltex I - Booth:
+  bg image: booth.png
+  sound subfolder: sdvx-1
+  bgm: voltexes_1.ogg
+  start sound: start.ogg
+  launch scripts:
+    1:
+      name: Default
+      path: D:\full-path-to-batch-file
+
+Sound Voltex VII - ∇:
+  bg image: nabla.png
+  sound subfolder: sdvx-7
+  bgm: title_bgm.wav
+  start sound: start.wav
+  launch scripts:
+    1:
+      name: Default CGDev
+      path: D:\full-path-to-batch-file
+
+unnamed_sdvx_clone:
+  bg image: usc.png
+  sound subfolder: usc
+  bgm: DIAVOLO.ogg
+  start sound: start.wav
+  launch scripts:
+    1:
+      name: usc
+      path: D:\full-path-to-batch-file
+
+Grand Piano Keys:
+  bg image: piano.jpg
+  sound subfolder: piano
+  bgm: piano.ogg
+  start sound: key.ogg
+  launch scripts:
+    1:
+      name: Default
+      path: D:\full-path-to-batch-file
