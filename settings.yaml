@@ -1,0 +1,60 @@
+display:
+  width: 1080
+  height: 1920
+  fullscreen: false
+  monitor: 0            # display index (0 = primary)
+  secondary_monitor: 1  # display index for the grid menu
+  fps: 120
+
+audio:
+  # Device name — run `python -c "import os; os.environ['SD_ENABLE_ASIO']='1'; import sounddevice; print(sounddevice.query_devices())"` to list.
+  # ASIO is auto-enabled. Examples:
+  #   ASIO:   "Focusrite USB ASIO"
+  #   WASAPI: "Altavoces (Focusrite USB Audio), Windows WASAPI"
+  # Leave empty to use system default output.
+  device: "Focusrite USB ASIO"
+  output_channels: [0, 1]   # zero-based channel selectors (used with ASIO devices)
+  sample_rate: 44100
+  crossfade_ms: 80             # BGM crossfade duration in milliseconds (near-instant)
+  volume: 0.7                # master volume 0.0 - 1.0
+
+keybinds:
+  # Each keybind can be:
+  #   type: button   index: <N>
+  #   type: axis     index: <N>   threshold: <float>  (positive = axis > threshold, negative = axis < threshold)
+  #   type: hat      index: <N>   value: [x, y]
+  navigate_up:
+    type: hat
+    index: 0
+    value: [0, 1]
+  navigate_down:
+    type: hat
+    index: 0
+    value: [0, -1]
+  navigate_left:
+    type: hat
+    index: 0
+    value: [-1, 0]
+  navigate_right:
+    type: hat
+    index: 0
+    value: [1, 0]
+  confirm:
+    type: button
+    index: 0              # A button
+  back:
+    type: button
+    index: 1              # B button
+  launch_script_up:
+    type: hat
+    index: 0
+    value: [0, 1]
+  launch_script_down:
+    type: hat
+    index: 0
+    value: [0, -1]
+
+input:
+  navigate_cooldown_ms: 40   # debounce delay for navigation repeats
+  axis_deadzone: 0.5          # threshold for axis-based navigation
+  show_inputs: true           # display inputs visually on screen
