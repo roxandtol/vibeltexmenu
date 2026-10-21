@@ -9,6 +9,7 @@ Ensures that:
 
 import os
 import sys
+from turtle import width
 import yaml
 
 
@@ -16,12 +17,17 @@ import yaml
 
 DEFAULT_SETTINGS = {
     "display": {
-        "width": 1080,
-        "height": 1920,
+        "width": 1920,
+        "height": 1080,
+        "landscape": False,
         "fullscreen": False,
         "monitor": 0,
         "secondary_monitor": 1,
         "fps": 120,
+    },
+    "touchscreen": {
+        "width": 1920,
+        "height": 1080
     },
     "audio": {
         "device": "XONAR SOUND CARD(64)",
@@ -29,6 +35,7 @@ DEFAULT_SETTINGS = {
         "sample_rate": 44100,
         "crossfade_ms": 80,
         "volume": 0.7,
+        "bgm_gain": 0.5,
     },
     "keybinds": {
         "navigate_up":   {"type": "hat", "index": 0, "value": [0, 1]},
@@ -43,6 +50,31 @@ DEFAULT_SETTINGS = {
     "input": {
         "navigate_cooldown_ms": 40,
         "axis_deadzone": 0.5,
+        "show_inputs": True,
+    },
+    "carousel": {
+        "cover_aspect_ratio_width": 9,
+        "cover_aspect_ratio_height": 16,
+        "title_color": [255, 255, 255],
+        "bg_color": [12, 12, 20],
+        "accent_color": [90, 140, 255],
+        "accent_dim_color": [60, 90, 180],
+        "submenu_bg_color": [18, 18, 30, 230],
+        "submenu_selected_color": [90, 140, 255, 255],
+        "submenu_text_color": [220, 220, 240, 255],
+        "hint_color": [120, 120, 160],
+        "arrow_color": [180, 200, 255, 200],
+    },
+    "grid_menu": {
+        "cover_aspect_ratio_width": 9,
+        "cover_aspect_ratio_height": 16,
+        "rows": 2,
+        "title_color": [255, 255, 255, 255],
+        "bg_color": [12, 12, 20, 255],
+        "accent_color": [90, 140, 255, 255],
+        "submenu_bg_color": [18, 18, 30, 230],
+        "submenu_selected_color": [90, 140, 255, 255],
+        "submenu_text_color": [220, 220, 240, 255],
         "show_inputs": True,
     },
     "sdvxio": {
@@ -69,12 +101,17 @@ DEFAULT_SETTINGS = {
 # ── Autogeneration Templates ────────────────────────────────────────────────
 
 SETTINGS_YAML_TEMPLATE = """display:
-  width: 1080
-  height: 1920
+  width: 1920
+  height: 1080
+  landscape: false      # set to true for landscape orientation
   fullscreen: false
   monitor: 0            # display index (0 = primary portrait display)
   secondary_monitor: 1  # display index for the grid menu (landscape)
   fps: 120
+
+touchscreen:
+  width: 1920
+  height: 1080
 
 audio:
   # Device name — run with empty string to use system default output, or specify ASIO device.
@@ -86,6 +123,7 @@ audio:
   sample_rate: 44100
   crossfade_ms: 80          # BGM crossfade duration in milliseconds
   volume: 0.7               # master volume 0.0 - 1.0
+  bgm_gain: 0.5              # BGM volume multiplier 0.0 - 1.0
 
 keybinds:
   navigate_up:
@@ -118,6 +156,31 @@ keybinds:
     type: hat
     index: 0
     value: [0, -1]
+
+carousel:
+  cover_aspect_ratio_width: 9
+  cover_aspect_ratio_height: 16
+  title_color: [255, 255, 255]
+  bg_color: [12, 12, 20]
+  accent_color: [90, 140, 255]
+  accent_dim_color: [60, 90, 180]
+  submenu_bg_color: [18, 18, 30, 230]
+  submenu_selected_color: [90, 140, 255, 255]
+  submenu_text_color: [220, 220, 240, 255]
+  hint_color: [120, 120, 160]
+  arrow_color: [180, 200, 255, 200]
+    
+grid_menu:
+  cover_aspect_ratio_width: 16
+  cover_aspect_ratio_height: 9
+  rows: 2
+  title_color: [255, 255, 255, 255]
+  bg_color: [12, 12, 20, 255]
+  accent_color: [90, 140, 255, 255]
+  submenu_bg_color: [18, 18, 30, 230]
+  submenu_selected_color: [90, 140, 255, 255]
+  submenu_text_color: [220, 220, 240, 255]
+  show_inputs: true
 
 input:
   navigate_cooldown_ms: 40   # debounce delay for navigation repeats

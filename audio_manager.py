@@ -46,7 +46,7 @@ class AudioManager:
         # Current BGM state
         self._bgm_data: np.ndarray | None = None
         self._bgm_pos = 0
-        self._bgm_gain = 1.0
+        self._bgm_gain = audio_cfg.get("bgm_gain", 0.5)
         self._bgm_loop = True
 
         # Crossfade target
@@ -219,7 +219,7 @@ class AudioManager:
                 if self._fade_progress >= self._fade_samples:
                     self._bgm_data = self._next_data
                     self._bgm_pos = self._next_pos
-                    self._bgm_gain = 1.0
+                    self._bgm_gain = self._bgm_gain  # Keep the same gain
                     self._next_data = None
                     self._fade_samples = 0
                     self._fade_progress = 0
@@ -243,7 +243,7 @@ class AudioManager:
         with self._lock:
             self._bgm_data = data
             self._bgm_pos = 0
-            self._bgm_gain = 1.0
+            self._bgm_gain = self._bgm_gain  # Keep the same gain
             self._bgm_loop = loop
             self._next_data = None
             self._fade_samples = 0

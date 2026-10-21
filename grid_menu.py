@@ -3,6 +3,7 @@ import math
 import pygame
 import pygame._sdl2.video as video
 from carousel import _load_custom_font
+from config import load_settings
 
 # Same colors as carousel
 COL_BG           = (12, 12, 20, 255)
@@ -18,15 +19,46 @@ class GridMenu:
     def __init__(self, renderer: video.Renderer, games: list[dict], width: int, height: int,
                  font_dir: str = "font", show_inputs: bool = False,
                  base_covers: dict[int, pygame.Surface | None] | None = None):
+        settings = load_settings()
+
+        grid_menu = settings["grid_menu"]
+        display = settings["display"]
+        touchscreen = settings["touchscreen"]
+
+        global COVER_ASPECT
+        COVER_ASPECT = grid_menu["cover_aspect_ratio_width"] / grid_menu["cover_aspect_ratio_height"]
+        
+        global COL_TITLE
+        COL_TITLE = tuple(grid_menu["title_color"])
+
+        global COL_BG
+        COL_BG = tuple(grid_menu["bg_color"])
+
+        global COL_ACCENT
+        COL_ACCENT = tuple(grid_menu["accent_color"])
+
+        global COL_SUBMENU_BG
+        COL_SUBMENU_BG = tuple(grid_menu["submenu_bg_color"])
+
+        global COL_SUBMENU_SEL
+        COL_SUBMENU_SEL = tuple(grid_menu["submenu_selected_color"])
+
+        global COL_SUBMENU_TXT
+        COL_SUBMENU_TXT = tuple(grid_menu["submenu_text_color"])
+
+        # Window settings
+        self._landscape = display["landscape"]
+        self._touchscreen_height = touchscreen["height"]
+        
         self.renderer = renderer
         self.games = games
         self.W = width
         self.H = height
-        self.show_inputs = show_inputs
+        self.show_inputs = grid_menu.get("show_inputs", 1)
         self.selected_idx = 0
         
         # Grid settings (2 horizontal rows)
-        self.rows = 2
+        self.rows = grid_menu.get("rows", 2)
         self.padding = 40
         self.cover_h = (self.H - self.padding * (self.rows + 1)) // self.rows
         self.cover_w = int(self.cover_h * COVER_ASPECT)
@@ -135,8 +167,8 @@ class GridMenu:
         """Handle mapped mouse events."""
         # Inverse mapping: Touch X = Main Y, Touch Y = 1080 - Main X
         mx, my = event.pos[0], event.pos[1]
-        touch_x = my
-        touch_y = 1080 - mx
+        touch_x = mx
+        touch_y = my if self._landscape else self._touchscreen_height - mx
         
         if self.submenu_open:
             if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:

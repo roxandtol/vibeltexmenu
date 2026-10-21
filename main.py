@@ -33,6 +33,7 @@ def main():
     disp = settings["display"]
     WIDTH = disp["width"]
     HEIGHT = disp["height"]
+    LANDSCAPE = disp["landscape"]
     FPS = disp["fps"]
     FULLSCREEN = disp["fullscreen"]
     MONITOR = disp["monitor"]
@@ -45,22 +46,28 @@ def main():
 
     pygame.display.set_caption("VibeltexMenu")
 
+    if LANDSCAPE:
+        resolution = (WIDTH, HEIGHT)
+    else:
+        resolution = (HEIGHT, WIDTH)
+
     flags = 0
     if FULLSCREEN:
         flags |= pygame.FULLSCREEN | pygame.NOFRAME
         try:
-            screen = pygame.display.set_mode((WIDTH, HEIGHT), flags, display=MONITOR)
+            screen = pygame.display.set_mode(resolution, flags, display=MONITOR)
         except TypeError:
-            screen = pygame.display.set_mode((WIDTH, HEIGHT), flags)
+            screen = pygame.display.set_mode(resolution, flags)
     else:
-        screen = pygame.display.set_mode((WIDTH, HEIGHT), flags)
+        screen = pygame.display.set_mode(resolution, flags)
 
     clock = pygame.time.Clock()
     pygame.mouse.set_visible(True)
     
     # ── Secondary display (Grid Menu) ───────────────────────────────────
     # Landscape 1920x1080
-    sec_w, sec_h = 1920, 1080
+    touchscreen = settings["touchscreen"]
+    sec_w, sec_h = touchscreen["width"], touchscreen["height"]
     # Use SDL macro trick to center on specific monitor
     pos = video.WINDOWPOS_CENTERED | SEC_MONITOR
     window2 = video.Window("Secondary Window", size=(sec_w, sec_h), position=(pos, pos))

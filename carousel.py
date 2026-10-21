@@ -17,6 +17,7 @@ import colorsys
 import threading
 import concurrent.futures
 import pygame
+from config import load_settings
 
 # ── Colours ─────────────────────────────────────────────────────────────────
 
@@ -94,6 +95,39 @@ class Carousel:
     """Wii-style horizontal cover-flow game selector."""
 
     def __init__(self, games: list[dict], width: int, height: int, font_dir: str = "font"):
+        settings = load_settings()
+        carousel = settings["carousel"]
+
+        global COVER_ASPECT
+        COVER_ASPECT = carousel["cover_aspect_ratio_width"] / carousel["cover_aspect_ratio_height"]
+        
+        global COL_TITLE
+        COL_TITLE = tuple(carousel["title_color"])
+
+        global COL_BG
+        COL_BG = tuple(carousel["bg_color"])
+
+        global COL_ACCENT
+        COL_ACCENT = tuple(carousel["accent_color"])
+
+        global COL_ACCENT_DIM
+        COL_ACCENT_DIM = tuple(carousel["accent_dim_color"])
+
+        global COL_SUBMENU_BG
+        COL_SUBMENU_BG = tuple(carousel["submenu_bg_color"])
+
+        global COL_SUBMENU_SEL
+        COL_SUBMENU_SEL = tuple(carousel["submenu_selected_color"])
+
+        global COL_SUBMENU_TXT
+        COL_SUBMENU_TXT = tuple(carousel["submenu_text_color"])
+
+        global COL_HINT
+        COL_HINT = tuple(carousel["hint_color"])
+
+        global COL_ARROW
+        COL_ARROW = tuple(carousel["arrow_color"])
+        
         self.games = games
         self.W = width
         self.H = height
